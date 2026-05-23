@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة معالجة الاشتراكات الرقمية</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- خلفية النجوم البرمجية المتحركة -->
+    <div class="space-background">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        
+        <!-- كوكب زحل البرمجي (يسار) -->
+        <div class="planet saturn">
+            <div class="saturn-ring"></div>
+            <div class="planet-body"></div>
+        </div>
+
+        <!-- كوكب غازي بنفسجي متوهج (يمين أعلى) -->
+        <div class="planet nebula-world"></div>
+
+        <!-- كوكب صخري صغير (يمين أسفل) -->
+        <div class="planet exo-moon"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Maybe Faisal</h1>
+            <p>fuck 217</p>
+        </header>
+
+        <main class="dashboard-grid">
+            <!-- بطاقة المدخلات والتحكم -->
+            <section class="card control-section">
+                <h2>1. المدخلات وإعدادات الخدمة</h2>
+                
+                <div class="input-group">
+                    <label for="accounts-input">أدخل الحسابات هنا (كل حساب في سطر):</label>
+                    <textarea id="accounts-input" placeholder="example1@mail.com&#10;example2@mail.com"></textarea>
+                </div>
+
+                <div class="service-selector">
+                    <label class="service-option">
+                        <input type="radio" name="service" value="shahid" checked>
+                        <span class="btn-service">شاهد (Shahid)</span>
+                    </label>
+                    <label class="service-option">
+                        <input type="radio" name="service" value="osn">
+                        <span class="btn-service">OSN</span>
+                    </label>
+                    <label class="service-option">
+                        <input type="radio" name="service" value="netflix">
+                        <span class="btn-service">نتفليكس (Netflix)</span>
+                    </label>
+                </div>
+
+                <!-- حقل كلمة المرور المخصصة لنتفليكس -->
+                <div id="netflix-pass-container" class="input-group hidden">
+                    <label for="netflix_pass">اكتب كلمة مرور حساب نتفليكس:</label>
+                    <input type="text" id="netflix_pass" placeholder="عجزان تكتب باسورد؟؟ بحط لك ter1234">
+                </div>
+
+                <!-- أزرار العمليات -->
+                <div class="action-buttons">
+                    <button id="btn-process" class="btn btn-primary">🔄 معالجة الحسابات</button>
+                    <button id="btn-clear" class="btn btn-secondary">🧹 تفريغ كل القوائم</button>
+                </div>
+            </section>
+
+            <!-- بطاقة المخرجات والمعاينة -->
+            <section class="card output-section">
+                <div class="output-header">
+                    <h2>2. النتائج المستخرجة (<span id="line-count">0</span> سطر)</h2>
+                    <button id="btn-copy" class="btn btn-copy" disabled>📋 نسخ النتائج كاملة</button>
+                </div>
+                <textarea id="output-preview" readonly placeholder="هنا تطلع الايميلات"></textarea>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

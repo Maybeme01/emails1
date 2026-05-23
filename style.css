@@ -1,0 +1,399 @@
+/* الألوان والثيم الفضائي المتناسق */
+:root {
+    --bg-dark: #040209;
+    --bg-card: rgba(14, 9, 28, 0.82);
+    --primary: #7c24db;
+    --primary-glow: #a842ff;
+    --text-main: #f1edfa;
+    --text-muted: #9c8fb8;
+    --border-color: rgba(124, 36, 219, 0.35);
+    --copy-btn: #8a2be2;
+    --output-color: #dfb2ff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* --- الفضاء والنجوم والكواكب البرمجية --- */
+.space-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    overflow: hidden;
+    background: radial-gradient(ellipse at bottom, #0d0621 0%, #020105 100%);
+}
+
+/* النجوم البرمجية المتحركة */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #fff;
+    animation: moveStar 25s linear infinite, blinkStar 3s infinite ease-in-out;
+    opacity: 0;
+}
+
+/* توزيع النجوم وعشوائية الحركة */
+.star:nth-child(1) { top: 10%; left: 12%; animation-duration: 18s, 2s; }
+.star:nth-child(2) { top: 25%; left: 80%; animation-duration: 28s, 4s; width: 3px; height: 3px; }
+.star:nth-child(3) { top: 45%; left: 20%; animation-duration: 22s, 3s; }
+.star:nth-child(4) { top: 70%; left: 75%; animation-duration: 32s, 2.5s; }
+.star:nth-child(5) { top: 85%; left: 15%; animation-duration: 20s, 3.5s; width: 3px; height: 3px; }
+.star:nth-child(6) { top: 5%; left: 50%; animation-duration: 35s, 5s; }
+.star:nth-child(7) { top: 60%; left: 90%; animation-duration: 16s, 1.5s; }
+.star:nth-child(8) { top: 80%; left: 45%; animation-duration: 26s, 4s; }
+.star:nth-child(9) { top: 35%; left: 35%; animation-duration: 24s, 2s; }
+.star:nth-child(10) { top: 90%; left: 85%; animation-duration: 30s, 3s; }
+.star:nth-child(11) { top: 15%; left: 70%; animation-duration: 21s, 2.5s; }
+.star:nth-child(12) { top: 50%; left: 60%; animation-duration: 27s, 3.5s; }
+.star:nth-child(13) { top: 65%; left: 5%; animation-duration: 19s, 1.8s; }
+.star:nth-child(14) { top: 30%; left: 95%; animation-duration: 33s, 4.2s; }
+.star:nth-child(15) { top: 78%; left: 30%; animation-duration: 29s, 2.9s; }
+
+@keyframes moveStar {
+    0% { transform: translateY(105vh) scale(0.5); opacity: 0; }
+    10% { opacity: 0.7; }
+    90% { opacity: 0.7; }
+    100% { transform: translateY(-5vh) scale(1.2); opacity: 0; }
+}
+
+@keyframes blinkStar {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+/* الكواكب البرمجية الصافية */
+.planet {
+    position: absolute;
+    border-radius: 50%;
+    animation: floatingPlanets 8s ease-in-out infinite;
+}
+
+/* كوكب زحل (يسار المنتصف) */
+.planet.saturn {
+    bottom: 20%;
+    left: 3%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-15deg);
+    opacity: 0.6;
+}
+
+.saturn .planet-body {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle at 30% 30%, #a46eff 0%, #4a1c91 75%, #180336 100%);
+    border-radius: 50%;
+    box-shadow: inset -5px -5px 12px rgba(0,0,0,0.7), 0 0 15px rgba(168, 66, 255, 0.2);
+}
+
+.saturn .saturn-ring {
+    position: absolute;
+    width: 120px;
+    height: 20px;
+    border: 10px solid #7c44d1;
+    border-radius: 50%;
+    transform: rotateX(75deg);
+    box-shadow: 0 0 15px rgba(124, 68, 209, 0.4);
+}
+
+/* كوكب السديم (يمين أعلى) */
+.planet.nebula-world {
+    top: 8%;
+    right: 5%;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at 30% 30%, #ff76e9 0%, #70139c 60%, #170224 100%);
+    box-shadow: 0 0 25px rgba(255, 118, 233, 0.25);
+    opacity: 0.45;
+    animation-duration: 12s;
+}
+
+/* كوكب صغير (يمين أسفل) */
+.planet.exo-moon {
+    bottom: 12%;
+    right: 15%;
+    width: 35px;
+    height: 35px;
+    background: radial-gradient(circle at 30% 30%, #51e5ff 0%, #134e73 70%);
+    box-shadow: 0 0 10px rgba(81, 229, 255, 0.2);
+    opacity: 0.5;
+    animation-duration: 10s;
+}
+
+@keyframes floatingPlanets {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(3deg); }
+}
+
+/* --- تصميم واجهة المستخدم المستجيبة (Responsive UI) --- */
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+
+header h1 {
+    font-size: clamp(1.6rem, 5vw, 2.3rem); /* حجم خط مرن يتكيف مع عرض الشاشة */
+    text-shadow: 0 0 20px var(--primary-glow);
+    margin-bottom: 8px;
+}
+
+header p {
+    font-size: clamp(0.85rem, 2.5vw, 1rem);
+    color: var(--text-muted);
+}
+
+/* تقسيم الشبكة الأساسي - شاشات الـ PC الكبيرة */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+/* بطاقات العرض الزجاجية */
+.card {
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: clamp(15px, 4vw, 25px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+h2 {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    margin-bottom: 15px;
+    color: #cca3ff;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+textarea, input[type="text"] {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: #fff;
+    padding: 12px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s;
+}
+
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+textarea:focus, input[type="text"]:focus {
+    border-color: var(--primary-glow);
+    box-shadow: 0 0 10px rgba(168, 66, 255, 0.4);
+}
+
+/* محدد الخدمات ثلاثي الخيارات المتجاوب */
+.service-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.service-option input[type="radio"] {
+    display: none;
+}
+
+.btn-service {
+    display: block;
+    padding: 12px 5px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 600;
+    font-size: clamp(0.8rem, 2.2vw, 0.9rem);
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.service-option input[type="radio"]:checked + .btn-service {
+    background: linear-gradient(135deg, var(--primary), var(--primary-glow));
+    border-color: transparent;
+    box-shadow: 0 0 12px var(--primary-glow);
+    color: #fff;
+}
+
+.hidden { display: none; }
+
+/* أزرار العمليات والتحكم */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    flex: 2;
+    background: #5e17eb;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #712df2;
+    box-shadow: 0 0 12px rgba(113, 45, 242, 0.6);
+}
+
+.btn-secondary {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-main);
+}
+
+.btn-secondary:hover { background: rgba(255, 255, 255, 0.15); }
+
+/* قسم المخرجات والنسخ */
+.output-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.output-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 10px;
+}
+
+.output-header h2 { border: none; margin-bottom: 0; padding-bottom: 0; }
+
+.btn-copy {
+    background: var(--copy-btn);
+    color: white;
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.4);
+}
+
+.btn-copy:hover:not(:disabled) { 
+    background: #9d42f5;
+    box-shadow: 0 0 12px var(--primary-glow); 
+}
+
+.btn:disabled {
+    background: #252b36;
+    color: #556278;
+    cursor: not-allowed;
+    box-shadow: none !important;
+}
+
+#output-preview {
+    flex: 1;
+    min-height: 350px;
+    color: var(--output-color); 
+    text-shadow: 0 0 2px rgba(223, 178, 255, 0.3);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* --- الاستعلامات البرمجية للتجاوب مع الأجهزة المختلفة (Media Queries) --- */
+
+/* الأجهزة المتوسطة والشاشات العمودية كـ الآيباد والتابلت */
+@media (max-width: 960px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr; /* تحويل العرض إلى عمود واحد لمنع الضغط */
+        gap: 15px;
+    }
+    
+    .planet.saturn { bottom: 5%; left: auto; right: 5%; width: 70px; height: 70px; opacity: 0.3; }
+    .saturn .saturn-ring { width: 90px; height: 15px; }
+    .saturn .planet-body { width: 45px; height: 45px; }
+    .planet.nebula-world { top: 4%; width: 50px; height: 50px; }
+    .planet.exo-moon { display: none; }
+}
+
+/* الهواتف الذكية والأجهزة الصغيرة (الجوال) */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    header { margin-bottom: 20px; }
+    
+    /* جعل أزرار تحديد الخدمات تترتب بشكل عمودي أو ثنائي لسهولة النقر بالإصبع */
+    .service-selector {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+    
+    .btn-service {
+        padding: 10px;
+    }
+
+    .output-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .btn-copy {
+        width: 100%; /* تمديد زر النسخ ليشمل العرض الكامل على الجوال */
+    }
+    
+    .action-buttons {
+        flex-direction: column; /* ترتيب أزرار المعالجة والتنظيف عمودياً */
+    }
+    
+    .planet {
+        display: none !important; /* إخفاء الكواكب تماماً على شاشات الجوال الضيقة لمنع التشويش البصري */
+    }
+}
