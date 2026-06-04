@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } 
             else if (serviceType === 'osn') {
                 for (let p_num = 1; p_num <= 5; p_num++) {
-                    results.push(`الايميل: ${entry} | بروفايل ${p_num} | تواصل مع الدعم للحصول على كود الدخول`);
+                    results.push(`الايميل: ${entry} | بروفايل ${p_num} | @fuc217bot تواصل مع بوت التيليجرام للحصول على الكود`);
                 }
             }
         });
