@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const accountsInput = document.getElementById('accounts-input');
     const netflixPassContainer = document.getElementById('netflix-pass-container');
     const netflixPassInput = document.getElementById('netflix_pass');
+    const shahidPassContainer = document.getElementById('shahid-pass-container');
+    const shahidPassInput = document.getElementById('shahid_pass');
     const btnProcess = document.getElementById('btn-process');
     const btnClear = document.getElementById('btn-clear');
     const btnCopy = document.getElementById('btn-copy');
@@ -22,13 +24,18 @@ document.addEventListener('DOMContentLoaded', () => {
         { num: "5", code: "6510" }
     ];
 
-    // إظهار حقل الباسورد فقط عند اختيار خدمة نتفليكس
+    // إظهار وإخفاء حقول الباسورد بناءً على الخدمة المحددة
     serviceRadios.forEach(radio => {
         radio.addEventListener('change', (e) => {
             if (e.target.value === 'netflix') {
                 netflixPassContainer.classList.remove('hidden');
+                shahidPassContainer.classList.add('hidden');
+            } else if (e.target.value === 'shahid') {
+                shahidPassContainer.classList.remove('hidden');
+                netflixPassContainer.classList.add('hidden');
             } else {
                 netflixPassContainer.classList.add('hidden');
+                shahidPassContainer.classList.add('hidden');
             }
         });
     });
@@ -40,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // معالجة النصوص المستلمة من الـ Textarea وإخراج الصيغة المطلوبة
-    function processInputText(textValue, serviceType, netflixPass) {
+    function processInputText(textValue, serviceType, netflixPass, shahidPass) {
         const lines = textValue.split('\n')
             .map(line => line.trim())
             .filter(line => line.length > 0);
@@ -49,14 +56,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         lines.forEach(entry => {
             if (serviceType === 'shahid') {
-                const password = "Aa123123";
+                // إذا كتب المستخدم باسورد يتم اعتماده، وإذا تركه فارغاً يتم وضع الافتراضي Aa123123
+                const password = shahidPass ? shahidPass : "Aa123123";
                 for (let p_num = 1; p_num <= 4; p_num++) {
                     results.push(`الايميل: ${entry} | كلمة المرور: ${password} | بروفايل ${p_num}`);
                 }
             } 
             else if (serviceType === 'netflix') {
                 let password = "";
-                // إذا كتب المستخدم باسورد يتم اعتماده، وإذا تركه فارغاً يتم توليده تلقائياً برقم الإيميل كما في الكود الأساسي
+                // إذا كتب المستخدم باسورد يتم اعتماده، وإذا تركه فارغاً يتم توليده تلقائياً برقم الإيميل
                 if (netflixPass) {
                     password = netflixPass;
                 } else {
@@ -88,12 +96,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const selectedService = document.querySelector('input[name="service"]:checked').value;
         const netflixPass = netflixPassInput.value.trim();
+        const shahidPass = shahidPassInput.value.trim();
 
         // معالجة البيانات الحالية وإضافتها تراكمياً
-        const newProcessedData = processInputText(textValue, selectedService, netflixPass);
+        const newProcessedData = processInputText(textValue, selectedService, netflixPass, shahidPass);
         allData = allData.concat(newProcessedData);
 
-        // عرض النتائج بلونها البنفسجي وتحديث كاونتر الأسطر
+        // عرض النتائج وتحديث كاونتر الأسطر
         outputPreview.value = allData.join('\n');
         lineCountSpan.textContent = allData.length;
 
@@ -103,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ميزة نسخ جميع النتائج الحالية إلى الحافظة بضغطة زر واحدة
+    // ميزة نسخ جميع النتائج الحالية إلى الحافظة
     btnCopy.addEventListener('click', () => {
         if (allData.length === 0) return;
         
@@ -125,13 +134,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     });
 
-    // تفريغ ومسح البيانات وإعادة تعيين الواجهة بالكامل لبدء عملية جديدة
+    // تفريغ ومسح البيانات وإعادة تعيين الواجهة بالكامل
     btnClear.addEventListener('click', () => {
         allData = [];
         accountsInput.value = "";
         outputPreview.value = "";
         lineCountSpan.textContent = "0";
         netflixPassInput.value = "";
+        shahidPassInput.value = "";
         btnCopy.disabled = true;
     });
 });
